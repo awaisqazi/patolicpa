@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    title: 'Tax Preparation & Planning',
+    desc: 'Federal and state returns for individuals, sole proprietors, partnerships, S corporations, and C corporations. Proactive planning throughout the year keeps your tax bill as low as the law allows.',
+    items: [
+      'Individual returns (Form 1040)',
+      'Business returns (1120, 1120-S, 1065)',
+      'Quarterly estimated tax calculations',
+      'Multi-state and prior-year filings',
+    ],
+  },
+  {
+    title: 'Bookkeeping & Accounting',
+    desc: 'Accurate monthly books that give you a clear picture of your business. We handle the recordkeeping so you can focus on running your company.',
+    items: [
+      'Monthly bookkeeping and reconciliations',
+      'Financial statement preparation',
+      'QuickBooks setup, cleanup, and training',
+      'Accounts payable and receivable support',
+    ],
+  },
+  {
+    title: 'Payroll Services',
+    desc: 'Reliable payroll processing with all filings and deposits handled for you, so your team gets paid on time and you stay compliant.',
+    items: [
+      'Payroll processing and direct deposit',
+      'Payroll tax filings (941, 940, W-2, 1099)',
+      'New hire reporting',
+      'Year-end forms and reconciliation',
+    ],
+  },
+  {
+    title: 'Business Advisory',
+    desc: 'Practical guidance for decisions that matter, backed by your actual numbers.',
+    items: [
+      'Entity selection and restructuring',
+      'Budgeting and cash-flow forecasting',
+      'Profitability and pricing analysis',
+      'Loan and financing support',
+    ],
+  },
+  {
+    title: 'New Business Formation',
+    desc: 'Launch on a solid foundation. We set up your entity, registrations, and accounting systems correctly from day one.',
+    items: [
+      'Entity formation (LLC, S corp, C corp)',
+      'EIN and state registrations',
+      'S corporation elections',
+      'Accounting system setup',
+    ],
+  },
+  {
+    title: 'IRS Representation',
+    desc: 'If the IRS comes calling, you do not have to face them alone. A licensed CPA represents you and works toward the best possible resolution.',
+    items: [
+      'IRS and state notice responses',
+      'Audit representation',
+      'Back tax filings',
+      'Payment plans and offers in compromise',
+    ],
+  },
+];
+---
+
+<Layout
+  title="Services | Patoli CPA"
+  description="Tax preparation, bookkeeping, payroll, business advisory, formation, and IRS representation services from Patoli CPA."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Services</h1>
+      <p>
+        Full-service accounting for individuals and small businesses. Every
+        engagement comes with clear pricing and direct access to your CPA.
+      </p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="card-grid">
+        {
+          services.map((s) => (
+            <div class="card">
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <ul style="margin: 0.9rem 0 0 1.2rem; color: var(--ink-soft); font-size: 0.95rem;">
+                {s.items.map((item) => (
+                  <li style="margin-top: 0.35rem;">{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <div>
+        <h2>Not sure what you need?</h2>
+        <p>Reach out and we will point you in the right direction, no obligation.</p>
+      </div>
+      <a href="/contact/" class="btn btn-primary">Contact Us</a>
+    </div>
+  </section>
+</Layout>

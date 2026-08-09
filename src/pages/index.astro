@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    title: 'Tax Preparation & Planning',
+    desc: 'Individual and business tax returns prepared accurately and on time, with year-round planning to minimize what you owe.',
+  },
+  {
+    title: 'Bookkeeping & Accounting',
+    desc: 'Clean, reliable monthly books so you always know where your business stands.',
+  },
+  {
+    title: 'Payroll Services',
+    desc: 'Payroll processing, filings, and compliance handled end to end for your team.',
+  },
+  {
+    title: 'Business Advisory',
+    desc: 'Entity selection, budgeting, and cash-flow guidance to help your business grow with confidence.',
+  },
+  {
+    title: 'New Business Formation',
+    desc: 'Start your business right with entity setup, EIN registration, and accounting systems from day one.',
+  },
+  {
+    title: 'IRS Representation',
+    desc: 'Notices, audits, and back taxes resolved by a licensed CPA who deals with the IRS for you.',
+  },
+];
+---
+
+<Layout title="Patoli CPA | Tax, Accounting & Advisory Services">
+  <section class="hero">
+    <div class="container">
+      <h1>Accounting you can count on, from a CPA who knows your name.</h1>
+      <p>
+        Patoli CPA provides tax preparation, bookkeeping, payroll, and advisory
+        services for individuals and small businesses, with clear communication
+        and no surprises.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact/" class="btn btn-primary">Get a Free Consultation</a>
+        <a href="/services/" class="btn btn-secondary">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <h2 class="section-heading">Services</h2>
+      <p class="section-sub">
+        Everything you need to stay compliant, organized, and ahead of tax
+        season.
+      </p>
+      <div class="card-grid">
+        {
+          services.map((s) => (
+            <div class="card">
+              <span class="card-icon" aria-hidden="true">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">Why Patoli CPA</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Licensed & experienced</h3>
+          <p>
+            Work directly with a Certified Public Accountant, not a call
+            center or seasonal preparer.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Straightforward pricing</h3>
+          <p>
+            Clear, upfront fees for every engagement. You'll never be
+            surprised by an invoice.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Year-round support</h3>
+          <p>
+            Tax questions don't only happen in April. Get answers whenever
+            you need them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <div>
+        <h2>Ready to get started?</h2>
+        <p>Reach out for a free consultation and let's talk about your goals.</p>
+      </div>
+      <a href="/contact/" class="btn btn-primary">Contact Us</a>
+    </div>
+  </section>
+</Layout>
