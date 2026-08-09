@@ -72,7 +72,7 @@ import Layout from '../layouts/Layout.astro';
       <form
         id="contact-form"
         class="contact-form"
-        action="https://docs.google.com/forms/d/e/1FAIpQLScfin0H4ZWmLHbp0PTLj9Hx8dJ31cAuz6gx_gmZkN5yGYabEQ/formResponse"
+        action="https://patoli-contact.awais-a-qazi.workers.dev/submit"
         method="POST"
       >
         <div class="form-row">
@@ -97,34 +97,68 @@ import Layout from '../layouts/Layout.astro';
           Please do not include Social Security numbers or other sensitive
           details in this form.
         </p>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAELiLI23yrOx5aZ4"></div>
         <button type="submit" class="btn btn-primary">Send message</button>
         <p id="contact-form-status" class="form-status" role="status" hidden>
           Thank you. Your message has been sent, and we will get back to you
           within one business day.
         </p>
+        <p id="contact-form-error" class="form-status form-error" role="alert" hidden>
+          Something went wrong and your message was not sent. Please try again,
+          or email us directly at info@patolicpa.com.
+        </p>
       </form>
-      <iframe name="contact-form-sink" title="Hidden form submission frame" hidden></iframe>
     </div>
   </section>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
 
   <script>
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
     const status = document.getElementById('contact-form-status');
-    let submitted = false;
+    const error = document.getElementById('contact-form-error');
 
     if (form) {
-      // With JS available, submit into the hidden iframe so visitors stay on
-      // this page; without JS the form still posts to Google directly.
-      form.target = 'contact-form-sink';
-      form.addEventListener('submit', () => {
-        submitted = true;
-      });
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      const buttonLabel = button?.textContent ?? '';
 
-      const sink = document.querySelector<HTMLIFrameElement>('iframe[name="contact-form-sink"]');
-      sink?.addEventListener('load', () => {
-        if (!submitted) return;
-        form.reset();
-        if (status) status.hidden = false;
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (status) status.hidden = true;
+        if (error) error.hidden = true;
+
+        if (button) {
+          button.disabled = true;
+          button.textContent = 'Sending...';
+        }
+
+        let sent = false;
+
+        try {
+          // Turnstile adds cf-turnstile-response to the form for us.
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+          });
+          const result = await response.json().catch(() => null);
+          sent = response.ok && result?.ok === true;
+        } catch {
+          sent = false;
+        }
+
+        if (button) {
+          button.disabled = false;
+          button.textContent = buttonLabel;
+        }
+
+        if (sent) {
+          form.reset();
+          (window as any).turnstile?.reset();
+          if (status) status.hidden = false;
+        } else {
+          if (error) error.hidden = false;
+        }
       });
     }
   </script>

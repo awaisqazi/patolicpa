@@ -2,10 +2,17 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "astro-dev",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["astro", "dev", "--port", "4321"],
+      "name": "astro-attach",
+      "url": "http://localhost:4321",
       "port": 4321
+    },
+    {
+      "name": "https-test",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/private/tmp/claude-501/-Users-fezqazi-Documents-Patoli-CPA/805c5c73-e7e9-4818-9262-86fc73e783c4/scratchpad/https-test/server.mjs"],
+      "port": 8443,
+      "autoPort": false,
+      "url": "https://localhost:8443"
     }
   ]
 }

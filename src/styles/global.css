@@ -1257,6 +1257,16 @@ textarea {
   display: none;
 }
 
+.form-error {
+  color: #7c2d2d;
+  background: #f5e4e0;
+  border-color: #e3c4bc;
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
 .portal-hero {
   position: relative;
   padding: clamp(5rem, 10vw, 9rem) 0;
