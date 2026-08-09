@@ -3,37 +3,49 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Client Portal | Patoli CPA"
-  description="Securely upload documents and access your files through the Patoli CPA client portal."
+  title="Secure Client Portal | Patoli CPA"
+  description="Securely upload documents and access files through the Patoli CPA client portal."
 >
-  <div class="page-header">
-    <div class="container">
-      <h1>Client Portal</h1>
-      <p>
-        Existing clients can securely upload documents, review returns, and
-        exchange files through our client portal.
-      </p>
+  <section class="portal-hero">
+    <div class="container portal-grid">
+      <div class="portal-copy">
+        <p class="eyebrow eyebrow-light"><span></span> For existing clients</p>
+        <h1>One secure place for the documents that matter.</h1>
+        <p>
+          The client portal will provide encrypted document exchange, file
+          access, and a clear home for engagement materials without sending
+          sensitive information through ordinary email.
+        </p>
+        <a href="#portal-status" class="btn btn-warm">Portal access details <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="secure-orbit" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="lock-mark">
+          <svg viewBox="0 0 80 80">
+            <rect x="19" y="34" width="42" height="32" rx="5"></rect>
+            <path d="M28 34V25c0-7 5-13 12-13s12 6 12 13v9"></path>
+            <path d="M40 46v9"></path>
+          </svg>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="contact-note" style="max-width: 640px;">
-        <h2>Access the portal</h2>
+  <section id="portal-status" class="section portal-status-section">
+    <div class="container portal-status-grid">
+      <div>
+        <p class="kicker">Portal status</p>
+        <h2 class="display-heading">Secure access is coming soon.</h2>
+      </div>
+      <div class="portal-status-card">
+        <span class="status-pill"><span></span> Setup in progress</span>
         <p>
-          [PLACEHOLDER: This button will link to your portal provider (for
-          example SmartVault, Canopy, TaxDome, or Drake Portals) once an
-          account is set up.]
+          The portal provider and login link will be added once setup is
+          complete. Existing clients who need help in the meantime can contact
+          the practice directly.
         </p>
-        <p style="margin-top: 1.2rem;">
-          <a href="#" class="btn btn-primary" aria-disabled="true">
-            Open Client Portal
-          </a>
-        </p>
-        <p>
-          Trouble logging in? <a href="/contact/" style="color: var(--accent);">Contact us</a>{' '}
-          and we will help you get set up.
-        </p>
+        <a href="/contact/" class="text-link">Contact the practice <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>

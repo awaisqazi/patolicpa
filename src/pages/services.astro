@@ -3,8 +3,9 @@ import Layout from '../layouts/Layout.astro';
 
 const services = [
   {
-    title: 'Tax Preparation & Planning',
-    desc: 'Federal and state returns for individuals, sole proprietors, partnerships, S corporations, and C corporations. Proactive planning throughout the year keeps your tax bill as low as the law allows.',
+    number: '01',
+    title: 'Tax preparation & planning',
+    desc: 'Federal and state returns for individuals and businesses, paired with proactive planning that keeps the whole year in view.',
     items: [
       'Individual returns (Form 1040)',
       'Business returns (1120, 1120-S, 1065)',
@@ -13,8 +14,9 @@ const services = [
     ],
   },
   {
-    title: 'Bookkeeping & Accounting',
-    desc: 'Accurate monthly books that give you a clear picture of your business. We handle the recordkeeping so you can focus on running your company.',
+    number: '02',
+    title: 'Bookkeeping & accounting',
+    desc: 'Accurate monthly books and useful reports that let you spend less time sorting transactions and more time running the business.',
     items: [
       'Monthly bookkeeping and reconciliations',
       'Financial statement preparation',
@@ -23,8 +25,9 @@ const services = [
     ],
   },
   {
-    title: 'Payroll Services',
-    desc: 'Reliable payroll processing with all filings and deposits handled for you, so your team gets paid on time and you stay compliant.',
+    number: '03',
+    title: 'Payroll services',
+    desc: 'Reliable processing with the filings and deposits handled, so your team gets paid on time and your records stay aligned.',
     items: [
       'Payroll processing and direct deposit',
       'Payroll tax filings (941, 940, W-2, 1099)',
@@ -33,8 +36,9 @@ const services = [
     ],
   },
   {
-    title: 'Business Advisory',
-    desc: 'Practical guidance for decisions that matter, backed by your actual numbers.',
+    number: '04',
+    title: 'Business advisory',
+    desc: 'Practical guidance grounded in your actual numbers for the decisions that affect cash, growth, and peace of mind.',
     items: [
       'Entity selection and restructuring',
       'Budgeting and cash-flow forecasting',
@@ -43,8 +47,9 @@ const services = [
     ],
   },
   {
-    title: 'New Business Formation',
-    desc: 'Launch on a solid foundation. We set up your entity, registrations, and accounting systems correctly from day one.',
+    number: '05',
+    title: 'New business formation',
+    desc: 'A thoughtful launch with the registrations, elections, and financial systems set up correctly from the beginning.',
     items: [
       'Entity formation (LLC, S corp, C corp)',
       'EIN and state registrations',
@@ -53,8 +58,9 @@ const services = [
     ],
   },
   {
-    title: 'IRS Representation',
-    desc: 'If the IRS comes calling, you do not have to face them alone. A licensed CPA represents you and works toward the best possible resolution.',
+    number: '06',
+    title: 'IRS representation',
+    desc: 'Steady, professional help when a notice, audit, or unresolved filing is taking too much of your attention.',
     items: [
       'IRS and state notice responses',
       'Audit representation',
@@ -66,46 +72,52 @@ const services = [
 ---
 
 <Layout
-  title="Services | Patoli CPA"
-  description="Tax preparation, bookkeeping, payroll, business advisory, formation, and IRS representation services from Patoli CPA."
+  title="Tax, Accounting & Advisory Services | Patoli CPA"
+  description="Explore tax preparation, bookkeeping, payroll, business advisory, formation, and IRS representation services from Patoli CPA."
 >
-  <div class="page-header">
-    <div class="container">
-      <h1>Services</h1>
+  <header class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <p class="eyebrow"><span></span> Services</p>
+        <h1>Support for today’s numbers and tomorrow’s decisions.</h1>
+      </div>
       <p>
-        Full-service accounting for individuals and small businesses. Every
-        engagement comes with clear pricing and direct access to your CPA.
+        Integrated tax, accounting, and advisory services for individuals and
+        small businesses. Every engagement begins with a clear scope and direct
+        conversation about what you actually need.
       </p>
     </div>
-  </div>
+  </header>
 
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="card-grid">
-        {
-          services.map((s) => (
-            <div class="card">
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
-              <ul style="margin: 0.9rem 0 0 1.2rem; color: var(--ink-soft); font-size: 0.95rem;">
-                {s.items.map((item) => (
-                  <li style="margin-top: 0.35rem;">{item}</li>
-                ))}
+  <section class="section services-detail-section">
+    <div class="container service-detail-list">
+      {
+        services.map((service) => (
+          <article class="service-detail">
+            <div class="service-detail-title">
+              <span>{service.number}</span>
+              <h2>{service.title}</h2>
+            </div>
+            <div class="service-detail-body">
+              <p>{service.desc}</p>
+              <ul>
+                {service.items.map((item) => <li>{item}</li>)}
               </ul>
             </div>
-          ))
-        }
-      </div>
+          </article>
+        ))
+      }
     </div>
   </section>
 
-  <section class="cta-band">
-    <div class="container">
+  <section class="note-band">
+    <div class="container note-band-grid">
+      <p class="kicker kicker-light">Not sure where to begin?</p>
       <div>
-        <h2>Not sure what you need?</h2>
-        <p>Reach out and we will point you in the right direction, no obligation.</p>
+        <h2 class="display-heading light-heading">You do not have to diagnose the accounting problem first.</h2>
+        <p>Bring the questions, the paperwork, or simply the sense that something needs attention. We will help identify a sensible next step.</p>
+        <a href="/contact/" class="btn btn-warm">Talk through your needs <span aria-hidden="true">↗</span></a>
       </div>
-      <a href="/contact/" class="btn btn-primary">Contact Us</a>
     </div>
   </section>
 </Layout>

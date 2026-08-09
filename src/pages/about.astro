@@ -1,63 +1,88 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const principles = [
+  ['Direct', 'You work with a CPA who understands the full picture, not a phone tree or disconnected handoffs.'],
+  ['Plainspoken', 'Complex rules are translated into useful choices, clear tradeoffs, and concrete next steps.'],
+  ['Proactive', 'The most valuable conversations often happen before a deadline, not while reacting to one.'],
+  ['Secure', 'Modern digital tools keep documents organized and sensitive information out of ordinary email.'],
+];
 ---
 
 <Layout
-  title="About | Patoli CPA"
-  description="Learn about Patoli CPA, a licensed Certified Public Accountant serving individuals and small businesses."
+  title="About the Practice | Patoli CPA"
+  description="Learn how Patoli CPA combines professional rigor, clear communication, and attentive year-round service."
 >
-  <div class="page-header">
-    <div class="container">
-      <h1>About Patoli CPA</h1>
+  <header class="page-hero page-hero-warm">
+    <div class="container page-hero-grid">
+      <div>
+        <p class="eyebrow"><span></span> About the practice</p>
+        <h1>Professional rigor. Personal attention.</h1>
+      </div>
       <p>
-        A modern accounting practice built on old-fashioned service: know your
-        clients, do excellent work, and always be reachable.
+        Patoli CPA is a modern private practice grounded in a simple idea: the
+        best accounting relationships are technically sound, highly responsive,
+        and genuinely easy to understand.
       </p>
     </div>
-  </div>
+  </header>
 
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="prose">
-        <h2>Our story</h2>
+  <section class="section founder-section">
+    <div class="container founder-grid">
+      <div class="founder-visual">
+        <div class="profile-placeholder profile-placeholder-large" aria-label="Founder portrait will be added before launch">
+          <div class="profile-monogram" aria-hidden="true">P</div>
+          <p>Founder portrait<br />coming soon</p>
+        </div>
+        <p class="image-caption">Portrait and personal profile to be added before launch.</p>
+      </div>
+      <div class="founder-copy">
+        <p class="kicker">The person behind Patoli CPA</p>
+        <h2 class="display-heading">A founder story worth telling properly.</h2>
         <p>
-          [PLACEHOLDER: Founder bio. Example: "Patoli CPA was founded by
-          [Founder Name], CPA, who spent [X] years at [firm/industry] before
-          opening a practice dedicated to individuals and small business
-          owners. [He/She/They] holds a [degree] from [university] and is
-          licensed in [state]."]
+          The founder’s background, experience, licensing, education, and
+          areas of focus will live here once those details are ready. This space
+          is intentionally reserved rather than filled with generic biography
+          copy or assumptions.
         </p>
-
-        <h2>How we work</h2>
-        <p>
-          We keep things simple. You get a dedicated CPA who knows your
-          situation, responds quickly, and explains things in plain English.
-          No jargon, no runaround, and no surprise bills.
-        </p>
-        <ul>
-          <li>Flat, upfront pricing agreed before work begins</li>
-          <li>Secure digital document exchange</li>
-          <li>Virtual and in-person meetings available</li>
-          <li>Year-round availability, not just tax season</li>
-        </ul>
-
-        <h2>Credentials</h2>
-        <ul>
-          <li>[PLACEHOLDER: CPA license number and state]</li>
-          <li>[PLACEHOLDER: Professional memberships, e.g. AICPA]</li>
-          <li>[PLACEHOLDER: Education]</li>
-        </ul>
+        <div class="credential-preview">
+          <p class="credential-label">Profile details planned</p>
+          <ul>
+            <li>Professional background and approach</li>
+            <li>CPA licensing and memberships</li>
+            <li>Education and areas of specialization</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="cta-band">
+  <section class="section principles-section">
     <div class="container">
-      <div>
-        <h2>Let's talk about your goals</h2>
-        <p>The first conversation is always free.</p>
+      <div class="principles-heading">
+        <p class="kicker kicker-light">What clients can expect</p>
+        <h2 class="display-heading light-heading">A better working relationship with the numbers.</h2>
       </div>
-      <a href="/contact/" class="btn btn-primary">Contact Us</a>
+      <div class="principles-grid">
+        {principles.map(([title, description], index) => (
+          <article>
+            <span>0{index + 1}</span>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-cta compact-cta">
+    <div class="container closing-cta-grid">
+      <p class="kicker">A relationship starts with a conversation</p>
+      <div>
+        <h2 class="display-heading">Let’s talk about what you need.</h2>
+        <p>The first conversation is an opportunity to understand the situation and see whether the practice is the right fit.</p>
+        <a href="/contact/" class="btn btn-primary">Request an introductory call <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
   </section>
 </Layout>

@@ -3,60 +3,129 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Contact | Patoli CPA"
-  description="Get in touch with Patoli CPA to schedule a free consultation."
+  title="Start a Conversation | Patoli CPA"
+  description="Contact Patoli CPA to request an introductory conversation about your tax, accounting, or advisory needs."
 >
-  <div class="page-header">
-    <div class="container">
-      <h1>Contact</h1>
+  <header class="page-hero page-hero-contact">
+    <div class="container page-hero-grid">
+      <div>
+        <p class="eyebrow"><span></span> Contact</p>
+        <h1>Bring the questions. We’ll find the next step.</h1>
+      </div>
       <p>
-        Reach out by phone or email and we will get back to you within one
-        business day. The first consultation is free.
+        Share a little about what is going on and what kind of support you are
+        looking for. The first conversation is about understanding your needs
+        and seeing whether the fit is right.
       </p>
     </div>
-  </div>
+  </header>
 
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="contact-grid">
-        <dl class="contact-info">
-          <dt>Phone</dt>
-          <dd><a href="tel:+15555555555">[PLACEHOLDER: (555) 555-5555]</a></dd>
-
-          <dt>Email</dt>
-          <dd>
-            <a href="mailto:info@patolicpa.com">[PLACEHOLDER: info@patolicpa.com]</a>
-          </dd>
-
-          <dt>Office</dt>
-          <dd>
-            [PLACEHOLDER: Street Address]<br />
-            [PLACEHOLDER: City, State ZIP]
-          </dd>
-
-          <dt>Hours</dt>
-          <dd>
-            Monday to Friday: 9am to 5pm<br />
-            Extended hours during tax season
-          </dd>
-        </dl>
-
-        <div class="contact-note">
-          <h2>What to expect</h2>
-          <p>
-            Send a short note about your situation and what you are looking
-            for. We will reply within one business day to set up a free
-            introductory call.
-          </p>
-          <p>
-            For existing clients, documents can be shared securely through the
-            client portal rather than email.
-          </p>
-          <p style="margin-top: 1.2rem;">
-            <a href="mailto:info@patolicpa.com" class="btn btn-primary">Email Us</a>
-          </p>
-        </div>
+  <section class="section contact-section">
+    <div class="container contact-layout">
+      <div class="contact-primary">
+        <p class="kicker">Get in touch</p>
+        <h2 class="display-heading">Practice contact details are being finalized.</h2>
+        <p>
+          A dedicated phone number, office address, and scheduling link will be
+          published here before launch. In the meantime, the practice email
+          shown below is the planned point of contact.
+        </p>
+        <a href="mailto:info@patolicpa.com" class="contact-email">
+          <span>Email</span>
+          info@patolicpa.com
+          <span aria-hidden="true">↗</span>
+        </a>
+        <p class="small-note">Please do not send Social Security numbers, tax documents, or other sensitive information by email. Existing clients should use the secure portal.</p>
       </div>
+
+      <aside class="expect-card">
+        <p class="kicker kicker-light">What to expect</p>
+        <ol>
+          <li>
+            <span>01</span>
+            <div><strong>Tell us what you need</strong><p>A short note is enough to get the conversation started.</p></div>
+          </li>
+          <li>
+            <span>02</span>
+            <div><strong>Schedule an introductory call</strong><p>We will learn more, answer initial questions, and discuss fit.</p></div>
+          </li>
+          <li>
+            <span>03</span>
+            <div><strong>Receive a clear scope</strong><p>If it makes sense to proceed, the work, timing, and pricing will be outlined first.</p></div>
+          </li>
+        </ol>
+      </aside>
     </div>
   </section>
+
+  <section class="section contact-form-section">
+    <div class="container contact-form-grid">
+      <div class="contact-form-intro">
+        <p class="kicker">Send a message</p>
+        <h2 class="display-heading">Tell us a little about your situation.</h2>
+        <p>
+          Your message goes straight to the practice inbox. We will reply
+          within one business day.
+        </p>
+      </div>
+
+      <form
+        id="contact-form"
+        class="contact-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLScfin0H4ZWmLHbp0PTLj9Hx8dJ31cAuz6gx_gmZkN5yGYabEQ/formResponse"
+        method="POST"
+      >
+        <div class="form-row">
+          <label class="form-field">
+            <span>Name</span>
+            <input type="text" name="entry.807866370" autocomplete="name" required />
+          </label>
+          <label class="form-field">
+            <span>Email</span>
+            <input type="email" name="entry.837588410" autocomplete="email" required />
+          </label>
+        </div>
+        <label class="form-field">
+          <span>Phone (optional)</span>
+          <input type="tel" name="entry.435000044" autocomplete="tel" />
+        </label>
+        <label class="form-field">
+          <span>How can we help?</span>
+          <textarea name="entry.603333347" rows="6" required></textarea>
+        </label>
+        <p class="form-privacy">
+          Please do not include Social Security numbers or other sensitive
+          details in this form.
+        </p>
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p id="contact-form-status" class="form-status" role="status" hidden>
+          Thank you. Your message has been sent, and we will get back to you
+          within one business day.
+        </p>
+      </form>
+      <iframe name="contact-form-sink" title="Hidden form submission frame" hidden></iframe>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const status = document.getElementById('contact-form-status');
+    let submitted = false;
+
+    if (form) {
+      // With JS available, submit into the hidden iframe so visitors stay on
+      // this page; without JS the form still posts to Google directly.
+      form.target = 'contact-form-sink';
+      form.addEventListener('submit', () => {
+        submitted = true;
+      });
+
+      const sink = document.querySelector<HTMLIFrameElement>('iframe[name="contact-form-sink"]');
+      sink?.addEventListener('load', () => {
+        if (!submitted) return;
+        form.reset();
+        if (status) status.hidden = false;
+      });
+    }
+  </script>
 </Layout>
