@@ -155,9 +155,14 @@ textarea {
   width: 30px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 2;
+  stroke-width: 4.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.brand-mark svg .brand-accent {
+  stroke: #e2a078;
+  stroke-width: 3.8;
 }
 
 .brand-type {
@@ -168,9 +173,10 @@ textarea {
 
 .brand-type strong {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.32rem;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
 }
 
 .brand-type small {
@@ -392,6 +398,7 @@ textarea {
   font-size: 0.85rem;
   font-weight: 750;
   text-decoration: none;
+  cursor: pointer;
   transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
@@ -440,9 +447,17 @@ textarea {
 }
 
 .trust-strip {
+  position: relative;
+  z-index: 1;
   display: grid;
   padding: 1.25rem 0 1.4rem;
-  border-top: 1px solid rgba(21, 59, 53, 0.18);
+  overflow: hidden;
+  background: rgba(244, 240, 231, 0.9);
+  border: 1px solid rgba(21, 59, 53, 0.16);
+  border-bottom: 0;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -12px 35px rgba(21, 59, 53, 0.08);
+  backdrop-filter: blur(14px);
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -1125,6 +1140,123 @@ textarea {
   font-size: 0.84rem;
 }
 
+.contact-form-section {
+  padding-top: 0;
+  background: var(--paper);
+}
+
+.contact-form-grid {
+  display: grid;
+  padding-top: clamp(4.5rem, 8vw, 7rem);
+  align-items: start;
+  gap: clamp(3rem, 9vw, 8rem);
+  border-top: 1px solid var(--line);
+  grid-template-columns: 0.8fr 1.2fr;
+}
+
+.contact-form-intro {
+  position: sticky;
+  top: 120px;
+}
+
+.contact-form-intro h2 {
+  max-width: 520px;
+  margin-top: 1.1rem;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+}
+
+.contact-form-intro > p:not(.kicker) {
+  max-width: 480px;
+  margin-top: 1.4rem;
+  color: var(--ink-soft);
+}
+
+.contact-form {
+  display: grid;
+  padding: clamp(1.6rem, 4vw, 2.8rem);
+  gap: 1.3rem;
+  background: var(--cream);
+  border: 1px solid #d5dbd4;
+  border-radius: var(--radius-lg);
+}
+
+.form-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.form-field > span {
+  color: #435550;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid #c9d0c9;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.form-field input {
+  min-height: 54px;
+  padding: 0.75rem 0.9rem;
+}
+
+.form-field textarea {
+  min-height: 150px;
+  padding: 0.9rem;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.form-field input:hover,
+.form-field textarea:hover {
+  border-color: #9eaaa3;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  background: var(--white);
+  border-color: var(--forest-light);
+  box-shadow: 0 0 0 4px rgba(36, 88, 79, 0.12);
+}
+
+.form-privacy {
+  color: #75827e;
+  font-size: 0.72rem;
+}
+
+.contact-form .btn {
+  width: fit-content;
+  min-width: 150px;
+}
+
+.form-status {
+  padding: 0.9rem 1rem;
+  color: #205c4e;
+  background: #dfece6;
+  border: 1px solid #bfd6cb;
+  border-radius: 8px;
+  font-size: 0.84rem;
+}
+
+.form-status[hidden] {
+  display: none;
+}
+
 .portal-hero {
   position: relative;
   padding: clamp(5rem, 10vw, 9rem) 0;
@@ -1306,6 +1438,10 @@ textarea {
   background: #e4a77f;
 }
 
+.brand-light .brand-mark svg .brand-accent {
+  stroke: var(--cream);
+}
+
 .brand-light .brand-type small {
   color: #91aaa3;
 }
@@ -1468,6 +1604,7 @@ textarea {
   .founder-grid,
   .closing-cta-grid,
   .contact-layout,
+  .contact-form-grid,
   .portal-grid,
   .portal-status-grid {
     grid-template-columns: 1fr;
@@ -1521,6 +1658,10 @@ textarea {
     max-width: 680px;
   }
 
+  .contact-form-intro {
+    position: static;
+  }
+
   .secure-orbit {
     min-height: 390px;
   }
@@ -1548,7 +1689,8 @@ textarea {
   }
 
   .brand-type strong {
-    font-size: 1.3rem;
+    font-size: 0.98rem;
+    letter-spacing: -0.02em;
   }
 
   .brand-type small {
@@ -1628,6 +1770,14 @@ textarea {
 
   .contact-email span:last-child {
     display: none;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form .btn {
+    width: 100%;
   }
 
   .secure-orbit {
