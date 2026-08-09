@@ -1,0 +1,41 @@
+---
+interface Props {
+  bookingsUrl: string;
+}
+
+const { bookingsUrl } = Astro.props;
+---
+
+<div class="bookings-container">
+  <iframe
+    src={bookingsUrl}
+    title="Schedule an appointment with Patoli & Associates, CPA"
+    loading="lazy"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<style>
+  .bookings-container {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    background: var(--cream);
+  }
+
+  .bookings-container iframe {
+    display: block;
+    width: 100%;
+    height: 850px;
+    border: 0;
+  }
+
+  @media (max-width: 768px) {
+    .bookings-container iframe {
+      height: 1100px;
+    }
+  }
+</style>

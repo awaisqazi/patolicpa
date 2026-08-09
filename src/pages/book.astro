@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BookingsEmbed from '../components/BookingsEmbed.astro';
+
+const bookingUrl = 'https://outlook.office.com/book/PatoliAssociatesCPA@patolicpa.com/?ismsaljsauthenabled';
+---
+
+<Layout
+  title="Book an Appointment | Patoli & Associates, CPA"
+  description="Schedule a 45-minute consultation with Patoli & Associates, CPA. Available Monday through Friday, 9 AM to 5 PM Central."
+>
+  <header class="page-hero page-hero-warm">
+    <div class="container page-hero-grid">
+      <div>
+        <p class="eyebrow"><span></span> Book an appointment</p>
+        <h1>Find a time that works for you.</h1>
+      </div>
+      <p>
+        Consultations run 45 minutes and are available Monday through Friday,
+        9 AM to 5 PM Central. Pick a time below and you will receive a
+        confirmation by email.
+      </p>
+    </div>
+  </header>
+
+  <section class="section booking-section">
+    <div class="container booking-layout">
+      <p class="small-note booking-fallback">
+        If the scheduler below does not load, you can
+        {' '}<a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="text-link">open the booking page in a new tab <span aria-hidden="true">↗</span></a>.
+      </p>
+
+      <BookingsEmbed bookingsUrl={bookingUrl} />
+
+      <p class="small-note">
+        Prefer to reach us directly? You can also
+        {' '}<a href="/contact/" class="text-link">send a message</a> and we
+        will help find a time.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .booking-layout {
+    max-width: 960px;
+  }
+
+  .booking-fallback {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+</style>
