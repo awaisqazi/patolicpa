@@ -33,6 +33,17 @@ const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      // iOS Safari auto-zooms on form fields with sub-16px text, including inside
+      // the booking iframe. maximum-scale=1 disables that auto-zoom on iOS while
+      // still allowing manual pinch zoom; other platforms keep the default meta
+      // because they would lose pinch zoom entirely.
+      if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+        document
+          .querySelector('meta[name="viewport"]')
+          .setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
