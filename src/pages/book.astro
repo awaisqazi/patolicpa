@@ -160,9 +160,15 @@ const bookingUrl = 'https://outlook.office.com/book/PatoliAssociatesCPA@patolicp
   }
 
   .booking-fallback-note {
-    max-width: 46ch;
     margin-inline: auto;
-    line-height: 1.6;
+    line-height: 1.7;
+  }
+
+  /* .text-link is styled as a standalone CTA (inline-flex + top margin);
+     inside this running sentence the links must flow as plain text. */
+  .booking-fallback-note :global(.text-link) {
+    display: inline;
+    margin-top: 0;
   }
 
   .booking-modal {
