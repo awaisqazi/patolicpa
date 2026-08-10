@@ -57,10 +57,8 @@ const bookingUrl = 'https://outlook.office.com/book/PatoliAssociatesCPA@patolicp
         <button type="button" class="booking-open" id="open-scheduler">
           Schedule an appointment
         </button>
-        <p class="small-note">
-          Trouble with the scheduler? You can
-          {' '}<a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="text-link">open the booking page in a new tab <span aria-hidden="true">↗</span></a>{' '}
-          or <a href="/contact/" class="text-link">send a message</a> and we will help find a time.
+        <p class="small-note booking-fallback-note">
+          Trouble with the scheduler? <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="text-link">Open the booking page in a new tab</a> or <a href="/contact/" class="text-link">send a message</a> and we will help find a time.
         </p>
       </div>
     </div>
@@ -159,6 +157,12 @@ const bookingUrl = 'https://outlook.office.com/book/PatoliAssociatesCPA@patolicp
 
   .booking-cta .small-note {
     margin-top: 1rem;
+  }
+
+  .booking-fallback-note {
+    max-width: 46ch;
+    margin-inline: auto;
+    line-height: 1.6;
   }
 
   .booking-modal {
