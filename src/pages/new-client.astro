@@ -2,23 +2,31 @@
 import Layout from '../layouts/Layout.astro';
 import CtaBand from '../components/CtaBand.astro';
 
-// Paste the Google Form embed URLs here (the src value from the form's
-// "Embed HTML" share option). Leave empty to show the setup notice instead.
-const individualFormEmbedUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdH35AtSs_rbUDks822PbzfWLrOTFIXB6STAvbc4eC50iEj7Q/viewform?embedded=true';
-const businessFormEmbedUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSd0sYT47TX17l4myDK7MmsD5rcxSXGFNz38DQiKjo58VkjYcw/viewform?embedded=true';
+// Both forms post to the Cloudflare Worker, which verifies Turnstile and
+// forwards the answers to the matching Google Form. Field names are the
+// Google Forms entry IDs so the Worker can map them one to one.
+const workerBase = 'https://patoli-contact.awais-a-qazi.workers.dev';
+const turnstileSiteKey = '0x4AAAAAAELiLI23yrOx5aZ4';
 
-const forms = [
-  {
-    heading: 'New Individual Client Form',
-    src: individualFormEmbedUrl,
-    title: 'New individual client intake form',
-  },
-  {
-    heading: 'New Business Client Form',
-    src: businessFormEmbedUrl,
-    title: 'New business client intake form',
-  },
+const filingStatuses = [
+  'Single',
+  'Married filing jointly',
+  'Married filing separately',
+  'Head of Household',
+  'Qualifying Surviving Spouse',
+  'Unsure',
 ];
+const dependentCounts = ['0', '1', '2', '3', '4+'];
+const businessTypes = ['Corporation', 'S-Corp', 'Partnership', 'LLC', 'Sole Proprietorship', 'Unsure'];
+const partnershipTypes = [
+  'General Partnership',
+  'Limited Partnership',
+  'Limited Liability Partnership',
+  'Limited Liability Company',
+  'Foreign Partnership',
+  'Other',
+];
+const accountingMethods = ['Cash', 'Accrual', 'Other', 'Unsure'];
 ---
 
 <Layout
@@ -30,38 +38,326 @@ const forms = [
       <p class="kicker">Get Started</p>
       <h1>Welcome New Clients</h1>
       <p>
-        If you have any questions about our services or process, please contact us
-        before filling out these forms.
+        Please fill out the form that fits your situation and we can get started
+        right away. If you have any questions about our services or process,
+        contact us before filling out these forms.
       </p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
+    <div class="container intake-layout">
       <p class="small-note small-note-center">
-        Please do not enter Social Security numbers or upload tax documents in
+        Please do not enter Social Security numbers, EINs, or tax documents in
         these forms. We will send a secure upload link after we connect.
       </p>
 
-      {
-        forms.map((form) => (
-          <div class="form-embed-block">
-            <h2 class="form-embed-heading">{form.heading}</h2>
-            {form.src ? (
-              <iframe class="form-embed" src={form.src} title={form.title} loading="lazy">
-                Loading form
-              </iframe>
-            ) : (
-              <div class="notice-card">
-                <p>This form is being set up and will be available shortly.</p>
-                <a href="/contact/" class="btn btn-sm">Contact Us</a>
-              </div>
-            )}
-          </div>
-        ))
-      }
+      <nav class="intake-switch" aria-label="Choose a form">
+        <a href="#individual" class="btn">Individual Tax Client</a>
+        <a href="#business" class="btn btn-outline">Business Tax Client</a>
+      </nav>
+
+      <article class="intake-block" id="individual">
+        <h2 class="form-embed-heading">New Individual Client Form</h2>
+        <div class="contact-form-block">
+          <form class="contact-form intake-form" action={`${workerBase}/submit/individual`} method="POST">
+            <div class="form-row">
+              <label class="form-field">
+                <span>Filing Status</span>
+                <select name="entry.34271753" required>
+                  <option value="">Select one</option>
+                  {filingStatuses.map((status) => <option value={status}>{status}</option>)}
+                </select>
+              </label>
+              <label class="form-field">
+                <span>Dependents</span>
+                <select name="entry.1148722232" required>
+                  <option value="">Select one</option>
+                  {dependentCounts.map((count) => <option value={count}>{count}</option>)}
+                </select>
+              </label>
+            </div>
+
+            <label class="form-check">
+              <input type="checkbox" name="entry.899960226" value="Yes, I need to file in more than one state" />
+              <span>Multistate return: I need to file in more than one state</span>
+            </label>
+
+            <p class="form-group-label">Taxpayer</p>
+            <label class="form-field">
+              <span>Full Name (First, Middle, Last)</span>
+              <input type="text" name="entry.1188523742" autocomplete="name" required />
+            </label>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Date of Birth</span>
+                <input type="date" name="entry.520230671" autocomplete="bday" required />
+              </label>
+              <label class="form-field">
+                <span>Occupation</span>
+                <input type="text" name="entry.415572170" autocomplete="organization-title" required />
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Phone Number</span>
+                <input type="tel" name="entry.1304892919" autocomplete="tel" required />
+              </label>
+              <label class="form-field">
+                <span>Email</span>
+                <input type="email" name="entry.255512335" autocomplete="email" required />
+              </label>
+            </div>
+
+            <p class="form-group-label">Spouse (if filing jointly)</p>
+            <label class="form-field">
+              <span>Spouse's Full Name (optional)</span>
+              <input type="text" name="entry.1428231473" />
+            </label>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Spouse's Date of Birth (optional)</span>
+                <input type="date" name="entry.1177470525" />
+              </label>
+              <label class="form-field">
+                <span>Spouse's Occupation (optional)</span>
+                <input type="text" name="entry.1119238828" />
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Spouse's Phone Number (optional)</span>
+                <input type="tel" name="entry.1163791718" />
+              </label>
+              <label class="form-field">
+                <span>Spouse's Email (optional)</span>
+                <input type="email" name="entry.540594178" />
+              </label>
+            </div>
+
+            <p class="form-group-label">Home Address</p>
+            <label class="form-field">
+              <span>Address (Number and Street)</span>
+              <input type="text" name="entry.1081073742" autocomplete="street-address" required />
+            </label>
+            <div class="form-row form-row-address">
+              <label class="form-field">
+                <span>City</span>
+                <input type="text" name="entry.591580004" autocomplete="address-level2" required />
+              </label>
+              <label class="form-field">
+                <span>State</span>
+                <input type="text" name="entry.1950372971" autocomplete="address-level1" />
+              </label>
+              <label class="form-field">
+                <span>Zip Code</span>
+                <input type="text" name="entry.1985439352" autocomplete="postal-code" inputmode="numeric" />
+              </label>
+            </div>
+
+            <label class="form-field">
+              <span>Notes (optional)</span>
+              <textarea name="entry.1172336037" rows="5"></textarea>
+            </label>
+
+            <p class="form-privacy">
+              Please do not include Social Security numbers or other sensitive
+              details in this form.
+            </p>
+            <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+            <button type="submit" class="btn">Submit</button>
+            <p class="form-status" role="status" hidden>
+              Thank you. We have received your information and will reach out
+              within one business day with next steps.
+            </p>
+            <p class="form-status form-error" role="alert" hidden>
+              Something went wrong and your form was not sent. Please check the
+              required fields and try again, or email us at info@patolicpa.com.
+            </p>
+          </form>
+        </div>
+      </article>
+
+      <article class="intake-block" id="business">
+        <h2 class="form-embed-heading">New Business Client Form</h2>
+        <div class="contact-form-block">
+          <form class="contact-form intake-form" action={`${workerBase}/submit/business`} method="POST">
+            <div class="form-row">
+              <label class="form-field">
+                <span>Type of Business</span>
+                <select name="entry.1060108075" required>
+                  <option value="">Select one</option>
+                  {businessTypes.map((type) => <option value={type}>{type}</option>)}
+                </select>
+              </label>
+              <label class="form-field">
+                <span>Type of Partnership (if Partnership or LLC)</span>
+                <select name="entry.1545952302">
+                  <option value="">Not applicable</option>
+                  {partnershipTypes.map((type) => <option value={type}>{type}</option>)}
+                </select>
+              </label>
+            </div>
+
+            <p class="form-group-label">Business</p>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Business Name</span>
+                <input type="text" name="entry.564355504" autocomplete="organization" required />
+              </label>
+              <label class="form-field">
+                <span>Doing Business As (optional)</span>
+                <input type="text" name="entry.240377413" />
+              </label>
+            </div>
+            <label class="form-field">
+              <span>Primary Contact (First and Last Name)</span>
+              <input type="text" name="entry.1758505165" autocomplete="name" required />
+            </label>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Business Phone Number</span>
+                <input type="tel" name="entry.1291336900" autocomplete="tel" required />
+              </label>
+              <label class="form-field">
+                <span>Business Email</span>
+                <input type="email" name="entry.792393476" autocomplete="email" required />
+              </label>
+            </div>
+
+            <p class="form-group-label">Business Address</p>
+            <label class="form-field">
+              <span>Address (Number and Street)</span>
+              <input type="text" name="entry.948455584" autocomplete="street-address" required />
+            </label>
+            <div class="form-row form-row-address">
+              <label class="form-field">
+                <span>City</span>
+                <input type="text" name="entry.444002907" autocomplete="address-level2" required />
+              </label>
+              <label class="form-field">
+                <span>State</span>
+                <input type="text" name="entry.1846349346" autocomplete="address-level1" />
+              </label>
+              <label class="form-field">
+                <span>Zip Code</span>
+                <input type="text" name="entry.521316135" autocomplete="postal-code" inputmode="numeric" />
+              </label>
+            </div>
+
+            <p class="form-group-label">Entity Details</p>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Business Start Date (optional)</span>
+                <input type="date" name="entry.493536597" />
+              </label>
+              <label class="form-field">
+                <span>Date Incorporated (optional)</span>
+                <input type="date" name="entry.2051969542" />
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="form-field">
+                <span>State Incorporated (optional)</span>
+                <input type="text" name="entry.567888274" />
+              </label>
+              <label class="form-field">
+                <span>S Election Date (optional)</span>
+                <input type="date" name="entry.1209913412" />
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="form-field">
+                <span>Accounting Method (optional)</span>
+                <select name="entry.1847893626">
+                  <option value="">Select one</option>
+                  {accountingMethods.map((method) => <option value={method}>{method}</option>)}
+                </select>
+              </label>
+              <label class="form-field">
+                <span>Number of Partners or Shareholders</span>
+                <input type="text" name="entry.1827439795" inputmode="numeric" required />
+              </label>
+            </div>
+
+            <label class="form-field">
+              <span>Notes (optional)</span>
+              <textarea name="entry.1411316858" rows="5"></textarea>
+            </label>
+
+            <p class="form-privacy">
+              Please do not include EINs, Social Security numbers, or other
+              sensitive details in this form.
+            </p>
+            <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+            <button type="submit" class="btn">Submit</button>
+            <p class="form-status" role="status" hidden>
+              Thank you. We have received your information and will reach out
+              within one business day with next steps.
+            </p>
+            <p class="form-status form-error" role="alert" hidden>
+              Something went wrong and your form was not sent. Please check the
+              required fields and try again, or email us at info@patolicpa.com.
+            </p>
+          </form>
+        </div>
+      </article>
     </div>
   </section>
 
   <CtaBand />
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
+
+  <script>
+    document.querySelectorAll<HTMLFormElement>('form.intake-form').forEach((form) => {
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const status = form.querySelector<HTMLElement>('.form-status:not(.form-error)');
+      const error = form.querySelector<HTMLElement>('.form-error');
+      const widget = form.querySelector<HTMLElement>('.cf-turnstile');
+      const buttonLabel = button?.textContent ?? '';
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (status) status.hidden = true;
+        if (error) error.hidden = true;
+
+        if (button) {
+          button.disabled = true;
+          button.textContent = 'Sending...';
+        }
+
+        let sent = false;
+
+        try {
+          // Turnstile adds cf-turnstile-response to the form for us.
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+          });
+          const result = await response.json().catch(() => null);
+          sent = response.ok && result?.ok === true;
+        } catch {
+          sent = false;
+        }
+
+        if (button) {
+          button.disabled = false;
+          button.textContent = buttonLabel;
+        }
+
+        if (sent) {
+          form.reset();
+          if (widget) (window as any).turnstile?.reset(widget);
+          if (status) {
+            status.hidden = false;
+            status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } else {
+          if (error) error.hidden = false;
+        }
+      });
+    });
+  </script>
 </Layout>

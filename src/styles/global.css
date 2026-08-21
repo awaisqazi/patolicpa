@@ -893,8 +893,21 @@ h1,
 
 /* ---------------------------------------------------------------- New client forms */
 
-.form-embed-block + .form-embed-block {
+.intake-layout {
+  max-width: 860px;
+}
+
+.intake-switch {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.intake-block {
   margin-top: clamp(2.5rem, 5vw, 4rem);
+  scroll-margin-top: 140px;
 }
 
 .form-embed-heading {
@@ -907,12 +920,33 @@ h1,
   margin-bottom: 1.5rem;
 }
 
-.form-embed {
-  display: block;
-  width: 100%;
-  min-height: 1600px;
-  border: 0;
-  background: var(--white);
+.form-group-label {
+  margin-top: 0.5rem;
+  padding-bottom: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--forest);
+  border-bottom: 1px solid var(--line);
+}
+
+.form-row-address {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.form-check input {
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
+  accent-color: var(--forest);
 }
 
 .notice-card {
@@ -1071,8 +1105,11 @@ h1,
 }
 
 .form-field input,
+.form-field select,
 .form-field textarea {
   width: 100%;
+  min-height: 48px;
+  font-family: inherit;
   padding: 0.75rem 0.85rem;
   font-size: 16px;
   color: var(--ink);
@@ -1085,7 +1122,16 @@ h1,
   resize: vertical;
 }
 
+.form-field select {
+  appearance: none;
+  padding-right: 2.4rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23153b35' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+}
+
 .form-field input:focus,
+.form-field select:focus,
 .form-field textarea:focus {
   border-color: var(--forest-light);
   outline: none;
@@ -1352,6 +1398,7 @@ h1,
   .profile-row,
   .contact-layout,
   .form-row,
+  .form-row-address,
   .footer-grid,
   .link-grid,
   .card-grid-2 {
