@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
 
 const services = [
   {
-    number: '01',
-    title: 'Tax preparation & planning',
+    id: 'tax',
+    mark: 'I',
+    title: 'Tax Preparation & Planning',
     desc: 'Federal and state returns for individuals and businesses, paired with proactive planning that keeps the whole year in view.',
     items: [
       'Individual returns (Form 1040)',
@@ -14,8 +16,9 @@ const services = [
     ],
   },
   {
-    number: '02',
-    title: 'Bookkeeping & accounting',
+    id: 'accounting',
+    mark: 'II',
+    title: 'Accounting & Bookkeeping',
     desc: 'Accurate monthly books and useful reports that let you spend less time sorting transactions and more time running the business.',
     items: [
       'Monthly bookkeeping and reconciliations',
@@ -25,8 +28,9 @@ const services = [
     ],
   },
   {
-    number: '03',
-    title: 'Payroll services',
+    id: 'payroll',
+    mark: 'III',
+    title: 'Payroll Services',
     desc: 'Reliable processing with the filings and deposits handled, so your team gets paid on time and your records stay aligned.',
     items: [
       'Payroll processing and direct deposit',
@@ -36,8 +40,9 @@ const services = [
     ],
   },
   {
-    number: '04',
-    title: 'Business advisory',
+    id: 'consulting',
+    mark: 'IV',
+    title: 'Business Consulting',
     desc: 'Practical guidance grounded in your actual numbers for the decisions that affect cash, growth, and peace of mind.',
     items: [
       'Entity selection and restructuring',
@@ -47,8 +52,9 @@ const services = [
     ],
   },
   {
-    number: '05',
-    title: 'New business formation',
+    id: 'formation',
+    mark: 'V',
+    title: 'New Business Formation',
     desc: 'A thoughtful launch with the registrations, elections, and financial systems set up correctly from the beginning.',
     items: [
       'Entity formation (LLC, S corp, C corp)',
@@ -58,8 +64,9 @@ const services = [
     ],
   },
   {
-    number: '06',
-    title: 'IRS representation',
+    id: 'irs',
+    mark: 'VI',
+    title: 'IRS Representation',
     desc: 'Steady, professional help when a notice, audit, or unresolved filing is taking too much of your attention.',
     items: [
       'IRS and state notice responses',
@@ -73,36 +80,36 @@ const services = [
 
 <Layout
   title="Tax, Accounting & Advisory Services | Patoli & Associates, CPA"
-  description="Explore tax preparation, bookkeeping, payroll, business advisory, formation, and IRS representation services from Patoli & Associates, CPA."
+  description="Explore tax preparation, bookkeeping, payroll, business consulting, formation, and IRS representation services from Patoli & Associates, CPA."
 >
-  <header class="page-hero">
-    <div class="container page-hero-grid">
-      <div>
-        <p class="eyebrow"><span></span> Services</p>
-        <h1>Support for today’s numbers and tomorrow’s decisions.</h1>
-      </div>
+  <section class="page-banner">
+    <div class="container">
+      <p class="kicker">What We Do</p>
+      <h1>Our Services</h1>
       <p>
         Integrated tax, accounting, and advisory services for individuals and
-        small businesses. Every engagement begins with a clear scope and direct
+        small businesses. Every engagement begins with a clear scope and a direct
         conversation about what you actually need.
       </p>
     </div>
-  </header>
+  </section>
 
-  <section class="section services-detail-section">
-    <div class="container service-detail-list">
+  <section class="section">
+    <div class="container">
       {
-        services.map((service) => (
-          <article class="service-detail">
-            <div class="service-detail-title">
-              <span>{service.number}</span>
+        services.map((service, index) => (
+          <article id={service.id} class={`service-block split ${index % 2 === 1 ? 'split-reverse' : ''}`}>
+            <div class="split-copy">
               <h2>{service.title}</h2>
-            </div>
-            <div class="service-detail-body">
               <p>{service.desc}</p>
-              <ul>
+              <ul class="service-list">
                 {service.items.map((item) => <li>{item}</li>)}
               </ul>
+            </div>
+            <div class="split-media">
+              <div class="service-figure" aria-hidden="true">
+                <span>{service.mark}</span>
+              </div>
             </div>
           </article>
         ))
@@ -110,14 +117,10 @@ const services = [
     </div>
   </section>
 
-  <section class="note-band">
-    <div class="container note-band-grid">
-      <p class="kicker kicker-light">Not sure where to begin?</p>
-      <div>
-        <h2 class="display-heading light-heading">You do not have to diagnose the accounting problem first.</h2>
-        <p>Bring the questions, the paperwork, or simply the sense that something needs attention. We will help identify a sensible next step.</p>
-        <a href="/contact/" class="btn btn-warm">Talk through your needs <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </section>
+  <CtaBand
+    kicker="Not Sure Where to Begin?"
+    heading="Let's Find the Right Starting Point"
+    body="Bring the questions, the paperwork, or simply the sense that something needs attention. We will help identify a sensible next step."
+    buttonLabel="Contact Us"
+  />
 </Layout>

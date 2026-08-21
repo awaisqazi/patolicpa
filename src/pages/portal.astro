@@ -1,52 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
 ---
 
 <Layout
   title="Secure Client Portal | Patoli & Associates, CPA"
   description="Securely upload documents and access files through the Patoli & Associates, CPA client portal."
 >
-  <section class="portal-hero">
-    <div class="container portal-grid">
-      <div class="portal-copy">
-        <p class="eyebrow eyebrow-light"><span></span> For existing clients</p>
-        <h1>One secure place for the documents that matter.</h1>
-        <p>
-          The client portal will provide encrypted document exchange, file
-          access, and a clear home for engagement materials without sending
-          sensitive information through ordinary email.
-        </p>
-        <a href="#portal-status" class="btn btn-warm">Portal access details <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="secure-orbit" aria-hidden="true">
-        <div class="orbit orbit-one"></div>
-        <div class="orbit orbit-two"></div>
-        <div class="lock-mark">
-          <svg viewBox="0 0 80 80">
-            <rect x="19" y="34" width="42" height="32" rx="5"></rect>
-            <path d="M28 34V25c0-7 5-13 12-13s12 6 12 13v9"></path>
-            <path d="M40 46v9"></path>
-          </svg>
-        </div>
-      </div>
+  <section class="page-banner">
+    <div class="container">
+      <p class="kicker">For Existing Clients</p>
+      <h1>Secure Client Portal</h1>
+      <p>
+        The client portal provides encrypted document exchange and a clear home
+        for engagement materials, without sending sensitive information through
+        ordinary email.
+      </p>
     </div>
   </section>
 
-  <section id="portal-status" class="section portal-status-section">
-    <div class="container portal-status-grid">
-      <div>
-        <p class="kicker">Portal status</p>
-        <h2 class="display-heading">Secure access is coming soon.</h2>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-heading">Portal Status</h2>
+        <hr class="divider-rule" />
       </div>
       <div class="portal-status-card">
         <span class="status-pill"><span></span> Setup in progress</span>
         <p>
-          The portal provider and login link will be added once setup is
-          complete. Existing clients who need help in the meantime can contact
-          the practice directly.
+          The portal provider and login link will be added here once setup is
+          complete. Existing clients who need help in the meantime can contact the
+          practice directly.
         </p>
-        <a href="/contact/" class="text-link">Contact the practice <span aria-hidden="true">→</span></a>
+        <a href="/contact/" class="btn btn-sm" style="margin-top: 1.25rem;">Contact Us</a>
       </div>
     </div>
   </section>
+
+  <CtaBand />
 </Layout>

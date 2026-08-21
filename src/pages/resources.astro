@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const faqs = [
+  {
+    q: 'What should I bring to a first meeting?',
+    a: 'Bring your most recent tax return, any current-year tax forms you have received, and, for a business, your bookkeeping file or bank statements. If you are not sure what applies, come with your questions and we will build the list together.',
+  },
+  {
+    q: 'How does scheduling work?',
+    a: 'Consultations run 45 minutes and are available Monday through Friday, 9 AM to 5 PM Central. You can pick a time on the booking page and a confirmation arrives by email.',
+    link: { href: '/book/', label: 'Book an appointment' },
+  },
+  {
+    q: 'How are documents shared securely?',
+    a: 'Documents are exchanged through a secure client portal rather than ordinary email. Please never send Social Security numbers, account numbers, or tax documents by email or through a web form.',
+  },
+  {
+    q: 'When should I start tax planning?',
+    a: 'Earlier than most people expect. The decisions that change a tax outcome, entity elections, retirement contributions, equipment purchases, and estimated payments, generally have to be made before the year closes, not at filing time.',
+  },
+  {
+    q: 'Do you work with businesses outside your state?',
+    a: 'Yes. Work is handled remotely, and we prepare federal and multi-state returns for clients in a range of locations. If your situation involves a state with unusual requirements, we will tell you up front.',
+  },
+  {
+    q: 'How do fees work?',
+    a: 'We define the scope of the work and provide a quote before anything begins. If the scope changes because the situation turns out to be more involved, we discuss that with you before continuing.',
+  },
+];
+
+const irsLinks = [
+  { label: "Where's My Refund", href: 'https://www.irs.gov/wheres-my-refund' },
+  { label: 'IRS Forms and Instructions', href: 'https://www.irs.gov/forms-instructions' },
+  { label: 'Make a Payment', href: 'https://www.irs.gov/payments' },
+  { label: 'Get Transcript', href: 'https://www.irs.gov/individuals/get-transcript' },
+  { label: 'IRS Online Account', href: 'https://www.irs.gov/payments/your-online-account' },
+  { label: 'Tax Withholding Estimator', href: 'https://www.irs.gov/individuals/tax-withholding-estimator' },
+];
+---
+
+<Layout
+  title="Resources | Patoli & Associates, CPA"
+  description="Frequently asked questions, IRS links, and privacy information from Patoli & Associates, CPA."
+>
+  <section class="page-banner">
+    <div class="container">
+      <p class="kicker">Resources</p>
+      <h1>Welcome to Our Resources Hub</h1>
+      <p>
+        Answers to common questions, direct links to IRS tools, and how we handle
+        your information.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-heading">FAQ</h2>
+        <hr class="divider-rule" />
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article class="faq-item">
+              <h3>{faq.q}</h3>
+              <p>{faq.a}</p>
+              {faq.link && <a href={faq.link.href} class="text-link">{faq.link.label}</a>}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-heading">IRS Links</h2>
+        <hr class="divider-rule" />
+        <p>Official IRS tools open in a new tab.</p>
+      </div>
+      <div class="link-grid">
+        {
+          irsLinks.map((link) => (
+            <a class="link-card" href={link.href} target="_blank" rel="noopener noreferrer">
+              <strong>{link.label}</strong>
+              <span>{link.href.replace('https://', '')}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2 class="section-heading">Privacy Policy</h2>
+      <hr class="divider-rule" />
+      <p>
+        Patoli &amp; Associates, CPA does not sell, rent, or share client
+        information with third parties for marketing purposes. Information you
+        provide is used only to deliver the services you have asked for and to
+        meet professional and legal obligations.
+      </p>
+      <p>
+        Client documents are exchanged and stored through secure systems rather
+        than ordinary email. Please do not send Social Security numbers, account
+        numbers, or tax documents through email or a website form. We will provide
+        a secure link when documents are needed.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

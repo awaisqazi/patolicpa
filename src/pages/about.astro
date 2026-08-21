@@ -1,88 +1,75 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
 
-const principles = [
-  ['Direct', 'You work with a CPA who understands the full picture, not a phone tree or disconnected handoffs.'],
-  ['Plainspoken', 'Complex rules are translated into useful choices, clear tradeoffs, and concrete next steps.'],
-  ['Proactive', 'The most valuable conversations often happen before a deadline, not while reacting to one.'],
-  ['Secure', 'Modern digital tools keep documents organized and sensitive information out of ordinary email.'],
+const team = [
+  {
+    name: 'Sharjeel Patoli, CPA',
+    title: 'Founder, Certified Public Accountant',
+    monogram: 'S',
+    bio: 'Full professional background, education, licensing, and areas of focus will be added here shortly.',
+  },
 ];
 ---
 
 <Layout
-  title="About the Practice | Patoli & Associates, CPA"
-  description="Learn how Patoli & Associates, CPA combines professional rigor, clear communication, and attentive year-round service."
+  title="About Patoli & Associates, CPA"
+  description="Learn about Patoli & Associates, CPA and the tax, accounting, and advisory support the practice provides."
 >
-  <header class="page-hero page-hero-warm">
-    <div class="container page-hero-grid">
-      <div>
-        <p class="eyebrow"><span></span> About the practice</p>
-        <h1>Professional rigor. Personal attention.</h1>
-      </div>
+  <section class="page-banner">
+    <div class="container">
+      <p class="kicker">About Us</p>
+      <h1>Focused on Your Numbers, and on You</h1>
+      <p>Trusted Tax and Accounting Solutions, Delivered Personally</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2 class="section-heading">More Than Tax Returns: We Help You Build</h2>
+      <hr class="divider-rule" />
       <p>
-        Patoli &amp; Associates, CPA is a modern private practice grounded in a simple idea: the
-        best accounting relationships are technically sound, highly responsive,
-        and genuinely easy to understand.
+        Our mission is straightforward: take complex tax and accounting situations
+        and make them understandable, so you can make confident decisions about
+        your money and your business. That means accurate work, clear explanations,
+        and a professional who is genuinely reachable when a question comes up.
+      </p>
+      <p>
+        We combine careful compliance work with strategic insight. Returns and
+        financial statements are the starting point, not the finish line. From
+        choosing an entity structure to planning for a growth year or an
+        unexpected one, we support you every step of the way.
       </p>
     </div>
-  </header>
-
-  <section class="section founder-section">
-    <div class="container founder-grid">
-      <div class="founder-visual">
-        <div class="profile-placeholder profile-placeholder-large" aria-label="Founder portrait will be added before launch">
-          <div class="profile-monogram" aria-hidden="true">P</div>
-          <p>Founder portrait<br />coming soon</p>
-        </div>
-        <p class="image-caption">Portrait and personal profile to be added before launch.</p>
-      </div>
-      <div class="founder-copy">
-        <p class="kicker">The person behind Patoli &amp; Associates, CPA</p>
-        <h2 class="display-heading">A founder story worth telling properly.</h2>
-        <p>
-          The founder’s background, experience, licensing, education, and
-          areas of focus will live here once those details are ready. This space
-          is intentionally reserved rather than filled with generic biography
-          copy or assumptions.
-        </p>
-        <div class="credential-preview">
-          <p class="credential-label">Profile details planned</p>
-          <ul>
-            <li>Professional background and approach</li>
-            <li>CPA licensing and memberships</li>
-            <li>Education and areas of specialization</li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </section>
 
-  <section class="section principles-section">
+  <section class="section section-cream">
     <div class="container">
-      <div class="principles-heading">
-        <p class="kicker kicker-light">What clients can expect</p>
-        <h2 class="display-heading light-heading">A better working relationship with the numbers.</h2>
+      <div class="section-head">
+        <h2 class="section-heading">Meet Your CPA</h2>
+        <hr class="divider-rule" />
+        <p>Get to know the person who makes it all happen.</p>
       </div>
-      <div class="principles-grid">
-        {principles.map(([title, description], index) => (
-          <article>
-            <span>0{index + 1}</span>
-            <h3>{title}</h3>
-            <p>{description}</p>
+
+      {
+        team.map((member) => (
+          <article class="profile-row">
+            <div class="profile-placeholder" aria-label={`Portrait of ${member.name} coming soon`}>
+              <div class="profile-monogram" aria-hidden="true">{member.monogram}</div>
+              <p>Portrait coming soon</p>
+            </div>
+            <div class="profile-copy">
+              <h2>{member.name}</h2>
+              <p class="profile-title">{member.title}</p>
+              <p class="placeholder-note">
+                <strong>Placeholder:</strong> {member.bio}
+              </p>
+            </div>
           </article>
-        ))}
-      </div>
+        ))
+      }
     </div>
   </section>
 
-  <section class="closing-cta compact-cta">
-    <div class="container closing-cta-grid">
-      <p class="kicker">A relationship starts with a conversation</p>
-      <div>
-        <h2 class="display-heading">Let’s talk about what you need.</h2>
-        <p>The first conversation is an opportunity to understand the situation and see whether the practice is the right fit.</p>
-        <a href="/contact/" class="btn btn-primary">Request an introductory call <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </section>
+  <CtaBand />
 </Layout>

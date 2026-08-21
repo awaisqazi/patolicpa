@@ -1,0 +1,26 @@
+---
+interface Props {
+  kicker?: string;
+  heading?: string;
+  body?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+}
+
+const {
+  kicker = 'Contact Us',
+  heading = 'Ready to Get Started?',
+  body = "Contact us today for personalized tax solutions and practical business advice. Let's work together to secure your financial future.",
+  buttonLabel = 'Contact Us',
+  buttonHref = '/contact/',
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="container cta-band-inner">
+    <p class="kicker kicker-light">{kicker}</p>
+    <h2 class="cta-band-heading">{heading}</h2>
+    <p class="cta-band-body">{body}</p>
+    <a href={buttonHref} class="btn btn-light">{buttonLabel}</a>
+  </div>
+</section>

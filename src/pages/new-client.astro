@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+// Paste the Google Form embed URLs here (the src value from the form's
+// "Embed HTML" share option). Leave empty to show the setup notice instead.
+const individualFormEmbedUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdH35AtSs_rbUDks822PbzfWLrOTFIXB6STAvbc4eC50iEj7Q/viewform?embedded=true';
+const businessFormEmbedUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSd0sYT47TX17l4myDK7MmsD5rcxSXGFNz38DQiKjo58VkjYcw/viewform?embedded=true';
+
+const forms = [
+  {
+    heading: 'New Individual Client Form',
+    src: individualFormEmbedUrl,
+    title: 'New individual client intake form',
+  },
+  {
+    heading: 'New Business Client Form',
+    src: businessFormEmbedUrl,
+    title: 'New business client intake form',
+  },
+];
+---
+
+<Layout
+  title="New Clients | Patoli & Associates, CPA"
+  description="New client intake forms for individuals and businesses working with Patoli & Associates, CPA."
+>
+  <section class="page-banner">
+    <div class="container">
+      <p class="kicker">Get Started</p>
+      <h1>Welcome New Clients</h1>
+      <p>
+        If you have any questions about our services or process, please contact us
+        before filling out these forms.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="small-note small-note-center">
+        Please do not enter Social Security numbers or upload tax documents in
+        these forms. We will send a secure upload link after we connect.
+      </p>
+
+      {
+        forms.map((form) => (
+          <div class="form-embed-block">
+            <h2 class="form-embed-heading">{form.heading}</h2>
+            {form.src ? (
+              <iframe class="form-embed" src={form.src} title={form.title} loading="lazy">
+                Loading form
+              </iframe>
+            ) : (
+              <div class="notice-card">
+                <p>This form is being set up and will be available shortly.</p>
+                <a href="/contact/" class="btn btn-sm">Contact Us</a>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

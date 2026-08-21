@@ -1,158 +1,113 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
 
-const services = [
+const serviceCards = [
   {
-    number: '01',
-    title: 'Tax preparation & planning',
-    desc: 'Accurate individual and business filings, paired with proactive planning that looks beyond a single deadline.',
-    tag: 'Individuals + businesses',
+    title: 'Tax Services',
+    desc: 'Individual and business tax return preparation, quarterly estimates, multi-state filings, and year-round planning that keeps the next deadline in view.',
+    href: '/services/#tax',
   },
   {
-    number: '02',
-    title: 'Bookkeeping & accounting',
-    desc: 'Reliable monthly books and useful financial statements, organized so you can see what your business is telling you.',
-    tag: 'Monthly support',
+    title: 'Accounting & Bookkeeping',
+    desc: 'Monthly bookkeeping, reconciliations, QuickBooks setup and cleanup, and financial statements you can actually use to run the business.',
+    href: '/services/#accounting',
   },
   {
-    number: '03',
-    title: 'Business advisory',
-    desc: 'Practical guidance on cash flow, budgeting, entity structure, and the decisions that shape what comes next.',
-    tag: 'Year-round perspective',
-  },
-  {
-    number: '04',
-    title: 'Payroll services',
-    desc: 'Dependable processing, tax deposits, and filings that keep your team paid and your business compliant.',
-    tag: 'End-to-end service',
-  },
-  {
-    number: '05',
-    title: 'New business formation',
-    desc: 'A strong start with thoughtful entity selection, registrations, and accounting systems set up from day one.',
-    tag: 'Built on solid ground',
-  },
-  {
-    number: '06',
-    title: 'IRS representation',
-    desc: 'Calm, experienced support for notices, audits, unfiled returns, and resolution options when the stakes feel high.',
-    tag: 'Clarity under pressure',
+    title: 'Business Consulting',
+    desc: 'Practical guidance on entity structure, budgeting, cash flow, and pricing, grounded in your real numbers rather than general advice.',
+    href: '/services/#consulting',
   },
 ];
 
-const process = [
+const differentiators = [
   {
-    number: '01',
-    title: 'Start with a real conversation',
-    desc: 'We begin with your questions, priorities, and the full picture, not a one-size-fits-all checklist.',
+    kicker: 'Expertise in Tax and Accounting',
+    tagline: '"Professional Rigor on Every Return"',
+    body: 'Every return and every set of books gets CPA-level review. Complex situations, multiple entities, multi-state filings, rental and investment activity, and prior-year cleanup are handled carefully rather than rushed through.',
   },
   {
-    number: '02',
-    title: 'Create a clear plan',
-    desc: 'You will understand the scope, timing, and next steps before the work begins.',
+    kicker: 'Honesty and Transparency in Every Service',
+    tagline: '"Straightforward, Honest Advice You Can Trust"',
+    body: 'You will hear clear communication, realistic expectations, and the reasoning behind each recommendation. Scope and pricing are discussed before the work begins, so there are no surprises later.',
   },
   {
-    number: '03',
-    title: 'Stay ahead together',
-    desc: 'Expect plain-English guidance and year-round support as your finances and goals evolve.',
+    kicker: 'Personalized Service Tailored to Your Needs',
+    tagline: '"Your Business Is Our Priority"',
+    body: 'There is no one-size-fits-all package here. You get direct access to your CPA, answers in plain language, and a working relationship that continues well past filing season.',
   },
 ];
 ---
 
 <Layout
-  title="Patoli & Associates, CPA | Clear Tax, Accounting & Advisory Guidance"
-  description="A modern private CPA practice offering tax preparation, bookkeeping, payroll, business advisory, formation, and IRS representation."
+  title="Patoli & Associates, CPA | Tax, Accounting & Business Advisory"
+  description="Patoli & Associates, CPA provides individual and business tax preparation, bookkeeping, payroll, and consulting services."
   socialTitle="Patoli & Associates, CPA"
-  socialDescription="Clear tax, accounting, and advisory guidance for individuals and small businesses."
+  socialDescription="Certified public accountants and business advisors serving individuals and businesses."
 >
-  <section class="hero hero-home">
-    <picture class="hero-media" aria-hidden="true">
+  <section class="home-hero">
+    <picture class="home-hero-media" aria-hidden="true">
       <source srcset="/images/financial-clarity-hero.webp" type="image/webp" />
       <img src="/images/financial-clarity-hero.png" alt="" width="1536" height="1024" fetchpriority="high" />
     </picture>
-    <div class="hero-wash" aria-hidden="true"></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> A modern private CPA practice</p>
-        <h1>Clarity for your taxes. <em>Confidence</em> for what’s next.</h1>
-        <p class="hero-lede">
-          Thoughtful tax, accounting, and advisory support for individuals and
-          small businesses, delivered with direct access, plain English, and no
-          surprises.
-        </p>
-        <div class="hero-actions">
-          <a href="/contact/" class="btn btn-primary">Request a consultation <span aria-hidden="true">↗</span></a>
-          <a href="/services/" class="btn btn-quiet">Explore services <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="container trust-strip" aria-label="Practice commitments">
-      <p><span class="trust-dot"></span> Direct CPA access</p>
-      <p><span class="trust-dot"></span> Year-round guidance</p>
-      <p><span class="trust-dot"></span> Secure digital workflow</p>
+    <div class="home-hero-overlay" aria-hidden="true"></div>
+    <div class="container home-hero-inner">
+      <span class="hero-brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64">
+          <path d="M19 47V17h17c8.2 0 13 4.5 13 11s-4.8 11-13 11h-9" />
+          <path class="brand-accent" d="M27 24.5h9c3.8 0 5.8 1.3 5.8 3.5s-2 3.5-5.8 3.5h-9" />
+        </svg>
+      </span>
+      <h1 class="hero-wordmark">Patoli &amp; Associates, CPA</h1>
+      <p class="hero-tagline">Certified Public Accountants and Business Advisors</p>
+      <p class="hero-subline">Individual &amp; Business Tax Preparation, Bookkeeping Services, and Consulting</p>
+      <a href="/new-client/" class="btn btn-light">Get Started</a>
     </div>
   </section>
 
-  <section class="section intro-section">
-    <div class="container intro-grid">
-      <div>
-        <p class="kicker">Accounting with perspective</p>
-        <h2 class="section-heading display-heading">Your numbers should help you decide what to do next.</h2>
-      </div>
-      <div class="intro-copy">
+  <section class="section">
+    <div class="container split">
+      <div class="split-copy">
+        <p class="kicker">About the Practice</p>
+        <h2>Trusted Tax and Accounting Guidance for Individuals and Businesses</h2>
         <p>
-          Good accounting is more than clean records and completed forms. It is
-          having a trusted professional who understands the context, spots what
-          matters, and makes the complicated feel manageable.
+          At Patoli &amp; Associates, CPA, we provide expert tax, accounting, and
+          advisory services for individuals and businesses alike. Whether you need
+          help with tax returns, bookkeeping, payroll, or planning for what comes
+          next, we are here to guide you every step of the way.
         </p>
-        <a href="/about/" class="text-link">How the practice works <span aria-hidden="true">→</span></a>
+        <a href="/about/" class="btn">About Us</a>
       </div>
-    </div>
-  </section>
-
-  <section class="section services-section">
-    <div class="container">
-      <div class="section-topline">
-        <div>
-          <p class="kicker kicker-light">Ways we can help</p>
-          <h2 class="section-heading display-heading light-heading">One relationship. A clearer financial picture.</h2>
+      <div class="split-media">
+        <div class="framed-image">
+          <picture>
+            <source srcset="/images/financial-clarity-hero.webp" type="image/webp" />
+            <img src="/images/financial-clarity-hero.png" alt="Financial documents and a calculator on a desk." width="1536" height="1024" loading="lazy" />
+          </picture>
         </div>
-        <p class="section-sidecopy">Core services designed to work together, from keeping the books current to planning several moves ahead.</p>
       </div>
-      <div class="service-grid">
-        {
-          services.map((service) => (
-            <article class="service-card">
-              <div class="card-topline">
-                <span>{service.number}</span>
-                <span class="card-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3>{service.title}</h3>
-              <p>{service.desc}</p>
-              <span class="service-tag">{service.tag}</span>
-            </article>
-          ))
-        }
-      </div>
-      <a href="/services/" class="btn btn-outline-light">See all service details <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
-  <section class="section process-section">
+  <section class="section section-cream">
     <div class="container">
-      <div class="process-heading">
-        <p class="kicker">A refreshingly straightforward process</p>
-        <h2 class="section-heading display-heading">Know where you stand, at every step.</h2>
+      <div class="section-head">
+        <h2 class="section-heading">Our Services</h2>
+        <hr class="divider-rule" />
+        <p>
+          We are a full-service accounting practice specializing in individual and
+          business tax returns, small business consulting, bookkeeping and
+          QuickBooks support, payroll, and financial statement preparation and
+          analysis. We offer personalized solutions to meet your unique needs.
+        </p>
       </div>
-      <div class="process-grid">
+      <div class="card-grid">
         {
-          process.map((step) => (
-            <article class="process-step">
-              <span class="process-number">{step.number}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
-              </div>
+          serviceCards.map((card) => (
+            <article class="info-card">
+              <h3>{card.title}</h3>
+              <p>{card.desc}</p>
+              <a href={card.href} class="btn btn-sm">Read More</a>
             </article>
           ))
         }
@@ -160,34 +115,31 @@ const process = [
     </div>
   </section>
 
-  <section class="section about-preview-section">
-    <div class="container about-preview-grid">
-      <div class="profile-placeholder" aria-label="Founder portrait will be added before launch">
-        <div class="profile-monogram" aria-hidden="true">P</div>
-        <p>Founder portrait<br />coming soon</p>
-      </div>
-      <div class="about-preview-copy">
-        <p class="kicker kicker-warm">The person behind the practice</p>
-        <h2 class="section-heading display-heading light-heading">A practice built around the relationship.</h2>
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-heading">What Sets Us Apart?</h2>
+        <hr class="divider-rule" />
         <p>
-          Patoli &amp; Associates, CPA is designed to pair professional rigor with the kind of
-          attentive, personal service that is hard to find at a larger firm.
-          Founder background, credentials, and areas of specialization will be
-          added here as the practice profile is finalized.
+          Our expertise, honesty, and a genuine commitment to your financial
+          success. When you choose Patoli &amp; Associates, CPA, you get more than
+          an accountant. You get a trusted advisor who speaks your language and has
+          your back.
         </p>
-        <a href="/about/" class="text-link text-link-light">About Patoli &amp; Associates, CPA <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="feature-grid">
+        {
+          differentiators.map((item) => (
+            <article class="feature-block">
+              <p class="feature-kicker">{item.kicker}</p>
+              <p class="feature-tagline">{item.tagline}</p>
+              <p>{item.body}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section class="closing-cta">
-    <div class="container closing-cta-grid">
-      <p class="kicker">A clearer next step starts here</p>
-      <div>
-        <h2 class="display-heading">Let’s make the numbers feel more manageable.</h2>
-        <p>Tell us what is on your mind. The first conversation is a chance to see if the fit is right.</p>
-        <a href="/contact/" class="btn btn-primary">Start a conversation <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </section>
+  <CtaBand />
 </Layout>

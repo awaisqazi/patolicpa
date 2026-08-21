@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
 
 const bookingUrl = 'https://outlook.office.com/book/PatoliAssociatesCPA@patolicpa.com/?ismsaljsauthenabled';
 ---
@@ -8,19 +9,17 @@ const bookingUrl = 'https://outlook.office.com/book/PatoliAssociatesCPA@patolicp
   title="Book an Appointment | Patoli & Associates, CPA"
   description="Schedule a 45-minute consultation with Patoli & Associates, CPA. Available Monday through Friday, 9 AM to 5 PM Central."
 >
-  <header class="page-hero page-hero-warm">
-    <div class="container page-hero-grid">
-      <div>
-        <p class="eyebrow"><span></span> Book an appointment</p>
-        <h1>Find a time that works for you.</h1>
-      </div>
+  <section class="page-banner">
+    <div class="container">
+      <p class="kicker">Scheduling</p>
+      <h1>Book an Appointment</h1>
       <p>
         Consultations run 45 minutes and are available Monday through Friday,
         9 AM to 5 PM Central. Open the scheduler, pick a time, and you will
         receive a confirmation by email.
       </p>
     </div>
-  </header>
+  </section>
 
   <section class="section booking-section">
     <div class="container booking-layout">
@@ -77,6 +76,13 @@ const bookingUrl = 'https://outlook.office.com/book/PatoliAssociatesCPA@patolicp
       ></iframe>
     </div>
   </dialog>
+
+  <CtaBand
+    kicker="Questions First?"
+    heading="Not Sure Which Service You Need?"
+    body="Send a short note about your situation and we will point you to a sensible starting point."
+    buttonLabel="Contact Us"
+  />
 </Layout>
 
 <script>
