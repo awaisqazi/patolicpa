@@ -326,11 +326,14 @@ h4 {
 }
 
 .brand-type small {
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.28em;
   color: var(--ink-soft);
+  text-align: justify;
+  text-align-last: justify;
+  margin-right: -0.28em;
 }
 
 .brand-light {
@@ -1345,8 +1348,9 @@ h1,
 
   .brand-type small {
     font-size: 0.56rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     white-space: nowrap;
+    margin-right: -0.16em;
   }
 
   .header-action {
