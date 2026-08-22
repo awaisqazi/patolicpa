@@ -298,8 +298,8 @@ h4 {
 }
 
 .brand-mark svg {
-  width: 46px;
-  height: 46px;
+  width: 58px;
+  height: 58px;
   fill: none;
   stroke: var(--forest);
   stroke-width: 4.4;
@@ -514,8 +514,8 @@ h1,
 }
 
 .hero-brand-mark svg {
-  width: clamp(64px, 9vw, 92px);
-  height: clamp(64px, 9vw, 92px);
+  width: clamp(52px, 7.5vw, 76px);
+  height: clamp(52px, 7.5vw, 76px);
   fill: none;
   stroke: var(--cream);
   stroke-width: 4.4;
@@ -1339,8 +1339,14 @@ h1,
   }
 
   .brand-mark svg {
-    width: 38px;
-    height: 38px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand-type small {
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
   }
 
   .header-action {
