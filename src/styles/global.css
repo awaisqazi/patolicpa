@@ -1085,9 +1085,13 @@ h1,
   color: var(--ink-soft);
 }
 
-.contact-detail a {
+.contact-detail a:not(.btn) {
   color: var(--forest);
   font-weight: 600;
+}
+
+.contact-detail .btn {
+  margin-top: 0.85rem;
 }
 
 .contact-form-block {
