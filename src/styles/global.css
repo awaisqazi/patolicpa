@@ -924,9 +924,37 @@ h1,
   margin-top: 1.5rem;
 }
 
+.intake-switch-btn {
+  border: 1px solid var(--forest);
+}
+
 .intake-block {
   margin-top: clamp(2.5rem, 5vw, 4rem);
   scroll-margin-top: 140px;
+}
+
+/* Grid-rows trick: animate an auto height by tweening the fr unit. */
+.intake-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intake-block.is-open .intake-collapse {
+  grid-template-rows: 1fr;
+}
+
+.intake-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 320ms ease, transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intake-block.is-open .intake-collapse-inner {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .form-embed-heading {
@@ -958,6 +986,20 @@ h1,
   gap: 0.6rem;
   font-size: 0.92rem;
   color: var(--ink);
+}
+
+.form-check-group {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.form-check-error {
+  color: #7d2d1f;
+  font-size: 0.85rem;
+}
+
+.form-check-error.is-shake {
+  animation: intake-shake 420ms ease;
 }
 
 .form-check input {
@@ -1183,6 +1225,140 @@ h1,
   color: #7d2d1f;
   background: #f7e8e2;
   border-left-color: var(--warm-dark);
+}
+
+/* -------------------------------------------------- Intake submission states */
+
+.intake-form .btn[type='submit'] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(244, 240, 231, 0.4);
+  border-top-color: var(--cream);
+  border-radius: 50%;
+  animation: intake-spin 700ms linear infinite;
+}
+
+.intake-form {
+  transition: opacity 300ms ease, transform 320ms ease;
+}
+
+.intake-form.is-hidden {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.form-success[hidden] {
+  display: none;
+}
+
+.form-success {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+  padding: 1.5rem 0.5rem;
+  text-align: center;
+  animation: intake-fade-in 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form-success h3 {
+  font-size: 1.4rem;
+}
+
+.form-success p {
+  max-width: 46ch;
+  color: var(--ink-soft);
+}
+
+.form-success-check {
+  color: var(--forest);
+}
+
+.form-success-circle {
+  stroke: var(--forest-light);
+}
+
+.form-success-tick {
+  stroke: var(--forest);
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  transition: stroke-dashoffset 500ms cubic-bezier(0.22, 1, 0.36, 1) 150ms;
+}
+
+.form-success.is-drawn .form-success-tick {
+  stroke-dashoffset: 0;
+}
+
+.form-success-reset {
+  margin-top: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.form-error.is-shake {
+  animation: intake-shake 420ms ease;
+}
+
+@keyframes intake-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes intake-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intake-shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intake-collapse,
+  .intake-collapse-inner,
+  .intake-form,
+  .form-success,
+  .form-success-tick,
+  .btn-spinner,
+  .form-error,
+  .form-check-error {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .intake-collapse-inner {
+    transform: none !important;
+  }
 }
 
 /* ---------------------------------------------------------------- Footer */

@@ -25,6 +25,7 @@ const text = (key, required = false, max = TEXT_MAX) => ({ key, required, type: 
 const longText = (key, required = false) => ({ key, required, type: 'text', max: LONG_TEXT_MAX });
 const date = (key, required = false) => ({ key, required, type: 'date' });
 const choice = (key, options, required = false) => ({ key, required, type: 'choice', options });
+const checkboxes = (key, options, required = false) => ({ key, required, type: 'checkboxes', options });
 
 const FORMS = {
   '/submit': {
@@ -73,13 +74,8 @@ const FORMS = {
       text('entry.521316135'), // zip
       text('entry.1291336900', true), // phone
       text('entry.792393476', true), // email
-      date('entry.493536597'), // start date
-      date('entry.2051969542'), // date incorporated
-      text('entry.567888274'), // state incorporated
-      date('entry.1209913412'), // S election date
-      choice('entry.1847893626', ['Cash', 'Accrual', 'Other', 'Unsure']),
-      text('entry.1827439795', true), // partners/shareholders
-      longText('entry.1411316858'), // notes
+      checkboxes('entry.1338849861', ['Tax', 'Accounting Services / Bookkeeping', 'Consulting / Advisory'], true),
+      longText('entry.1411316858'), // additional details
     ],
   },
 };
@@ -120,6 +116,18 @@ function field(formData, name) {
  * Google Forms body. Returns false when the value is invalid.
  */
 function applyField(spec, formData, body) {
+  if (spec.type === 'checkboxes') {
+    const values = formData
+      .getAll(spec.key)
+      .filter((v) => typeof v === 'string')
+      .map((v) => v.trim())
+      .filter(Boolean);
+    if (values.length === 0) return !spec.required;
+    if (!values.every((v) => spec.options.includes(v))) return false;
+    for (const v of values) body.append(spec.key, v);
+    return true;
+  }
+
   const value = field(formData, spec.key);
 
   if (!value) return !spec.required;
