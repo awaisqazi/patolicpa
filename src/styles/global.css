@@ -839,6 +839,22 @@ h1,
   text-transform: uppercase;
 }
 
+.profile-photo {
+  display: block;
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 50%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
 .profile-monogram {
   display: grid;
   place-items: center;
@@ -1419,7 +1435,8 @@ h1,
     order: 0;
   }
 
-  .profile-placeholder {
+  .profile-placeholder,
+  .profile-photo {
     max-width: 280px;
   }
 

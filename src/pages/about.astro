@@ -7,10 +7,24 @@ const team = [
     name: 'Sharjeel Patoli, CPA',
     title: 'Founder, Certified Public Accountant',
     monogram: 'S',
+    photo: '/images/sharjeel-patoli',
+    photoExt: 'png',
     bio: [
       'Sharjeel Patoli is a Certified Public Accountant with 15 years of experience spanning public accounting, corporate finance, and small business advisory. A DePaul University graduate with a major in accounting and finance, Sharjeel began in public accounting at a Big Four firm, working in tax and consulting and building a foundation in technical tax work, client advisory, and the discipline of getting the details right.',
       'From there, Sharjeel moved into corporate accounting at Fortune 500 companies, advancing through roles of increasing responsibility and gaining a close view of how large organizations manage reporting, controls, tax, and planning. Sharjeel then brought that experience to small businesses, leading their financial and accounting functions and helping owners turn their numbers into clear, confident decisions.',
       'That range is the idea behind Patoli & Associates, CPA: big-firm rigor, delivered with the direct, personal attention a small practice can offer. Whether you are filing an individual return, running a growing business, or planning your next move, Sharjeel works alongside you to keep the complicated manageable and the path forward clear.',
+    ],
+  },
+  {
+    name: 'Awais Qazi',
+    title: 'Associate, CPA Candidate',
+    monogram: 'A',
+    photo: '/images/awais-qazi',
+    photoExt: 'png',
+    bio: [
+      'Awais Qazi is an Associate at Patoli & Associates, CPA, currently sitting for the CPA exams and completing a Master of Business Administration, expected in December 2026. A New Jersey Institute of Technology graduate with a Bachelor of Science in business with specializations in accounting and finance, Awais brings a blend of analytical rigor and client-first communication to the practice.',
+      'Before joining the firm, Awais built his career at major technology companies, including CDW, HPE, and Panasonic, in roles with significant finance and accounting responsibilities spanning budgeting, forecasting, and business analysis. Working inside large, fast-moving organizations taught him how disciplined numbers drive confident decisions, a perspective he now brings to individuals and small business owners.',
+      'Awais supports the practice across tax preparation, bookkeeping, and client advisory, and is committed to the same standard the firm was built on: accurate work, clear explanations, and a professional who is genuinely reachable when a question comes up.',
     ],
   },
 ];
@@ -50,18 +64,31 @@ const team = [
   <section class="section section-cream">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-heading">Meet Your CPA</h2>
+        <h2 class="section-heading">Meet the Team</h2>
         <hr class="divider-rule" />
-        <p>Get to know the person who makes it all happen.</p>
+        <p>Get to know the people who make it all happen.</p>
       </div>
 
       {
         team.map((member) => (
           <article class="profile-row">
-            <div class="profile-placeholder" aria-label={`Portrait of ${member.name} coming soon`}>
-              <div class="profile-monogram" aria-hidden="true">{member.monogram}</div>
-              <p>Portrait coming soon</p>
-            </div>
+            {member.photo ? (
+              <picture class="profile-photo">
+                <source srcset={`${member.photo}.webp`} type="image/webp" />
+                <img
+                  src={`${member.photo}.${member.photoExt ?? 'jpg'}`}
+                  alt={`Portrait of ${member.name}`}
+                  width="480"
+                  height="600"
+                  loading="lazy"
+                />
+              </picture>
+            ) : (
+              <div class="profile-placeholder" aria-label={`Portrait of ${member.name} coming soon`}>
+                <div class="profile-monogram" aria-hidden="true">{member.monogram}</div>
+                <p>Portrait coming soon</p>
+              </div>
+            )}
             <div class="profile-copy">
               <h2>{member.name}</h2>
               <p class="profile-title">{member.title}</p>
