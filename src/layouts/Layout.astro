@@ -75,15 +75,12 @@ const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div class="construction-banner" role="status">
-      <span>Website preview</span>
-      Practice details and credentials are being finalized.
-    </div>
-
     <header class="site-header">
       <div class="utility-bar">
         <div class="container utility-inner">
           <div class="utility-left">
+            <a href="tel:+16309995270">630-999-5270</a>
+            <span class="utility-divider" aria-hidden="true"></span>
             <a href="mailto:info@patolicpa.com">info@patolicpa.com</a>
           </div>
           <p class="utility-right">Mon to Fri, 8 AM to 5 PM Central</p>
@@ -108,6 +105,11 @@ const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
           <div class="header-action">
             <a href="/contact/" class="btn btn-sm">Contact Us</a>
           </div>
+          <a href="tel:+16309995270" class="header-call" aria-label="Call 630-999-5270">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z" />
+            </svg>
+          </a>
           <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
             <span></span><span></span><span></span>
           </button>
@@ -131,7 +133,8 @@ const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
               </a>
             ))
           }
-          <a href="/contact/" class="nav-contact-mobile">Contact Us</a>
+          <a href="tel:+16309995270" class="nav-contact-mobile">Call 630-999-5270</a>
+          <a href="/contact/" class="nav-contact-mobile nav-contact-mobile-secondary">Contact Us</a>
         </nav>
       </div>
     </header>
@@ -153,8 +156,9 @@ const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
             <span class="brand-type"><strong>Patoli &amp; Associates, CPA</strong><small>Tax &middot; Accounting &middot; Advisory</small></span>
           </a>
           <p class="footer-label">Contact Us</p>
+          <p><a href="tel:+16309995270" class="footer-email">630-999-5270</a></p>
           <p><a href="mailto:info@patolicpa.com" class="footer-email">info@patolicpa.com</a></p>
-          <p class="footer-muted">Phone and office address coming soon.</p>
+          <p class="footer-muted">Office address coming soon.</p>
         </div>
 
         <div class="footer-col">

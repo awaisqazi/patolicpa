@@ -117,26 +117,6 @@ h4 {
   transform: translateY(0);
 }
 
-.construction-banner {
-  padding: 0.48rem 1.25rem;
-  color: #f1eadf;
-  background: var(--forest-dark);
-  text-align: center;
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
-}
-
-.construction-banner span {
-  display: inline-block;
-  margin-right: 0.55rem;
-  padding-right: 0.65rem;
-  color: #e5ad85;
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
 /* ---------------------------------------------------------------- Buttons */
 
 .btn {
@@ -387,8 +367,31 @@ h4 {
   border-bottom-color: var(--warm);
 }
 
-.nav-contact-mobile {
+.nav-contact-mobile,
+.header-call,
+.contact-call-btn {
   display: none;
+}
+
+.header-call {
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 40px;
+  color: var(--cream);
+  background: var(--forest);
+  border-radius: var(--radius-sm);
+}
+
+.header-call svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .nav-toggle {
@@ -1486,8 +1489,22 @@ h1,
   }
 
   .header-main-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.4rem;
     padding: 0.9rem 0;
+  }
+
+  .header-main .brand {
+    gap: 0.5rem;
+  }
+
+  .header-call {
+    display: inline-flex;
+    width: 40px;
+  }
+
+  .contact-call-btn {
+    display: inline-flex;
   }
 
   .header-spacer {
@@ -1495,12 +1512,12 @@ h1,
   }
 
   .brand-type strong {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
 
   .brand-mark svg {
-    width: 46px;
-    height: 46px;
+    width: 38px;
+    height: 38px;
   }
 
   .brand-type small {
@@ -1517,6 +1534,7 @@ h1,
   .nav-toggle {
     display: flex;
     justify-self: end;
+    width: 40px;
   }
 
   .header-nav-row {
@@ -1546,7 +1564,7 @@ h1,
     border-bottom-color: rgba(21, 59, 53, 0.1);
   }
 
-  .nav-contact-mobile {
+  .site-nav > .nav-contact-mobile {
     display: block;
     margin-top: 1rem;
     padding: 0.85rem 1rem;
@@ -1559,6 +1577,16 @@ h1,
     letter-spacing: 0.14em;
     text-transform: uppercase;
     text-decoration: none;
+  }
+
+  .site-nav > .nav-contact-mobile + .nav-contact-mobile {
+    margin-top: 0.6rem;
+  }
+
+  .site-nav > .nav-contact-mobile-secondary {
+    color: var(--forest);
+    background: transparent;
+    border: 1px solid rgba(21, 59, 53, 0.35);
   }
 
   .split,
