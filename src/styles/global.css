@@ -277,6 +277,10 @@ h4 {
   text-decoration: none;
 }
 
+.brand-mark {
+  flex-shrink: 0;
+}
+
 .brand-mark svg {
   width: 58px;
   height: 58px;
@@ -368,6 +372,7 @@ h4 {
 }
 
 .nav-contact-mobile,
+.call-fab,
 .header-call,
 .contact-call-btn {
   display: none;
@@ -387,6 +392,39 @@ h4 {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.call-fab {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 45;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  color: var(--cream);
+  background: var(--forest);
+  border: 2px solid rgba(244, 240, 231, 0.35);
+  border-radius: 50%;
+  box-shadow: 0 8px 22px rgba(21, 59, 53, 0.35);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.call-fab:active {
+  transform: scale(0.94);
+  background: var(--forest-dark);
+}
+
+.call-fab svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -1489,18 +1527,12 @@ h1,
   }
 
   .header-main-inner {
-    grid-template-columns: 1fr auto auto;
-    gap: 0.4rem;
+    grid-template-columns: 1fr auto;
     padding: 0.9rem 0;
   }
 
-  .header-main .brand {
-    gap: 0.5rem;
-  }
-
-  .header-call {
+  .call-fab {
     display: inline-flex;
-    width: 40px;
   }
 
   .contact-call-btn {
@@ -1512,12 +1544,12 @@ h1,
   }
 
   .brand-type strong {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .brand-mark svg {
-    width: 38px;
-    height: 38px;
+    width: 46px;
+    height: 46px;
   }
 
   .brand-type small {
@@ -1534,7 +1566,6 @@ h1,
   .nav-toggle {
     display: flex;
     justify-self: end;
-    width: 40px;
   }
 
   .header-nav-row {
@@ -1612,5 +1643,17 @@ h1,
   .footer-bottom {
     justify-content: center;
     text-align: center;
+  }
+}
+
+/* Header call button only where the full-size logo and name still fit on one line */
+@media (min-width: 414px) and (max-width: 800px) {
+  .header-main-inner {
+    grid-template-columns: 1fr auto auto;
+    gap: 0.5rem;
+  }
+
+  .header-call {
+    display: inline-flex;
   }
 }
