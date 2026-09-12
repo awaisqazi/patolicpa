@@ -84,9 +84,8 @@ const team = [
                 />
               </picture>
             ) : (
-              <div class="profile-placeholder" aria-label={`Portrait of ${member.name} coming soon`}>
+              <div class="profile-placeholder" role="img" aria-label={`Monogram for ${member.name}`}>
                 <div class="profile-monogram" aria-hidden="true">{member.monogram}</div>
-                <p>Portrait coming soon</p>
               </div>
             )}
             <div class="profile-copy">
