@@ -24,6 +24,29 @@ const navItems = [
   { href: '/book/', label: 'Book an Appointment' },
 ];
 
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  name: 'Patoli & Associates, CPA',
+  url: 'https://patolicpa.com/',
+  telephone: '+1-630-999-5270',
+  email: 'info@patolicpa.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '640 S Washington St, Suite 212',
+    addressLocality: 'Naperville',
+    addressRegion: 'IL',
+    postalCode: '60563',
+    addressCountry: 'US',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
+};
+
 const currentPath = Astro.url.pathname;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
@@ -71,6 +94,7 @@ const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
     <meta name="twitter:description" content={socialDescription} />
     <meta name="twitter:image" content={socialImageURL} />
     <meta name="twitter:image:alt" content="Patoli & Associates, CPA, offering tax preparation, bookkeeping, accounting, and business advisory services." />
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
     <title>{title}</title>
   </head>
   <body>
@@ -158,6 +182,12 @@ const socialImageURL = new URL('/images/social-preview-v2.jpg', Astro.site);
           <p class="footer-label">Contact Us</p>
           <p><a href="tel:+16309995270" class="footer-email">630-999-5270</a></p>
           <p><a href="mailto:info@patolicpa.com" class="footer-email">info@patolicpa.com</a></p>
+          <address class="footer-address">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=640+S+Washington+St+Suite+212+Naperville+IL+60563" target="_blank" rel="noopener">
+              640 S Washington St, Suite 212<br />
+              Naperville, IL 60563
+            </a>
+          </address>
         </div>
 
         <div class="footer-col">
